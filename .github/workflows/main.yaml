@@ -71,4 +71,4 @@ jobs:
         run: "${{ env.composer-install }}"
 
       - name: "PHPStan"
-        run: "vendor/bin/phpstan analyse --configuration phpstan.neon --level 7 src/"
+        run: "vendor/bin/phpstan analyse --configuration phpstan.neon --level 8 src/"

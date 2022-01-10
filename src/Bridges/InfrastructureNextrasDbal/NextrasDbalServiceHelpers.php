@@ -12,7 +12,7 @@ class NextrasDbalServiceHelpers
 	use StaticClass;
 
 
-	public static function modifyConnectionDefinition(ServiceDefinition $definition)
+	public static function modifyConnectionDefinition(ServiceDefinition $definition): void
 	{
 		$factory = $definition->getFactory();
 		assert($factory !== null);

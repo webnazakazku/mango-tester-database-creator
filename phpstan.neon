@@ -1,0 +1,3 @@
+parameters:
+    ignoreErrors:
+        - '#Invalid type Nextras\\Migrations\\Exception to throw\.#'

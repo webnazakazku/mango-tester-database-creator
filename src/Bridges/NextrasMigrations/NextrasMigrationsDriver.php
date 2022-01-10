@@ -29,7 +29,7 @@ class NextrasMigrationsDriver implements IMigrationsDriver
 	{
 		$runner = new Runner($driver, new class extends DevNull
 		{
-			public function printError(Exception $e)
+			public function printError(Exception $e): void
 			{
 				throw $e;
 			}

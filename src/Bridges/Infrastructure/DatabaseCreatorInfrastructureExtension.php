@@ -12,6 +12,7 @@ use Nextras\Dbal\IConnection;
 
 class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 {
+    /** @var mixed[]  */
 	public $defaults = [
 		'nextrasDbal' => false,
 	];
@@ -23,7 +24,7 @@ class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 	}
 
 
-	public function loadConfiguration()
+	public function loadConfiguration(): void
 	{
 		$config = $this->validateConfig($this->defaults);
 

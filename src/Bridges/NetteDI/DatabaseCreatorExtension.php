@@ -19,6 +19,7 @@ use Nette\DI\CompilerExtension;
 
 class DatabaseCreatorExtension extends CompilerExtension
 {
+    /** @var array<mixed>  */
 	public $defaults = [
 		'dbal' => null,
 		'migrations' => null,
@@ -32,7 +33,7 @@ class DatabaseCreatorExtension extends CompilerExtension
 	];
 
 
-	public function loadConfiguration()
+	public function loadConfiguration(): void
 	{
 		$config = $this->validateConfig($this->defaults);
 
@@ -62,7 +63,7 @@ class DatabaseCreatorExtension extends CompilerExtension
 	}
 
 
-	private function registerDbal($dbal): void
+	private function registerDbal(string $dbal): void
 	{
 		$builder = $this->getContainerBuilder();
 		$def = $builder->addDefinition($this->prefix('dbal'));
@@ -71,7 +72,7 @@ class DatabaseCreatorExtension extends CompilerExtension
 	}
 
 
-	private function registerMigrations($migrations): void
+	private function registerMigrations(string $migrations): void
 	{
 		$builder = $this->getContainerBuilder();
 		$def = $builder->addDefinition($this->prefix('migrationsDriver'));
@@ -79,7 +80,7 @@ class DatabaseCreatorExtension extends CompilerExtension
 	}
 
 
-	private function registerDriver($driver): void
+	private function registerDriver(string $driver): void
 	{
 		$builder = $this->getContainerBuilder();
 		$def = $builder->addDefinition($this->prefix('databaseDriver'));
@@ -92,7 +93,7 @@ class DatabaseCreatorExtension extends CompilerExtension
 	}
 
 
-	private function registerStrategy($strategy): void
+	private function registerStrategy(string $strategy): void
 	{
 		$builder = $this->getContainerBuilder();
 
@@ -112,7 +113,9 @@ class DatabaseCreatorExtension extends CompilerExtension
 		}
 	}
 
-
+    /**
+     * @param array<string> $config
+     */
 	private function registerNameResolver(array $config): void
 	{
 		$builder = $this->getContainerBuilder();

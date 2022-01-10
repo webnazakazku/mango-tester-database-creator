@@ -9,7 +9,7 @@ class Mutex
 	/** @var string */
 	private $dir;
 
-	/** @var array (name => handle) */
+	/** @var array<mixed> (name => handle) */
 	private $locks;
 
 
@@ -43,7 +43,9 @@ class Mutex
 
 		$path = $this->dir . '/lock-' . $key;
 		$this->locks[$key] = fopen($path, 'w');
-		flock($this->locks[$key], LOCK_EX);
+        /** @var resource $stream */
+        $stream = $this->locks[$key];
+		flock($stream, LOCK_EX);
 	}
 
 

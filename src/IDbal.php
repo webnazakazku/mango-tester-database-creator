@@ -6,7 +6,7 @@ interface IDbal
 {
 
 	/**
-	 * @return array list of rows represented by assoc. arrays
+	 * @return array<mixed> list of rows represented by assoc. arrays
 	 */
 	public function query(string $sql): array;
 
