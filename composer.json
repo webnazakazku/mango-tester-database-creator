@@ -2,7 +2,7 @@
 	"name": "mangoweb/tester-database-creator",
 	"license": "MIT",
 	"require": {
-		"php": "~7.1"
+		"php": ">=7.1"
 	},
 	"require-dev": {
 		"nette/di": "~3.0",
