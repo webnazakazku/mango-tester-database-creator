@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Bridges\Infrastructure;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\Infrastructure;
 
-use Mangoweb\Tester\DatabaseCreator\DatabaseCreator;
-use Mangoweb\Tester\Infrastructure\Container\AppContainerHook;
+use Webnazakazku\MangoTester\DatabaseCreator\DatabaseCreator;
+use Webnazakazku\MangoTester\Infrastructure\Container\AppContainerHook;
 use Nette\DI\Container;
 use Nette\DI\ContainerBuilder;
 

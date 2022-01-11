@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Strategies;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Strategies;
 
-use Mangoweb\Tester\DatabaseCreator\CannotContinueMigrationException;
-use Mangoweb\Tester\DatabaseCreator\Drivers\IDatabaseDriver;
-use Mangoweb\Tester\DatabaseCreator\IMigrationsDriver;
+use Webnazakazku\MangoTester\DatabaseCreator\CannotContinueMigrationException;
+use Webnazakazku\MangoTester\DatabaseCreator\Drivers\IDatabaseDriver;
+use Webnazakazku\MangoTester\DatabaseCreator\IMigrationsDriver;
 
 
 class ContinueOrResetDatabaseStrategy implements IDatabaseCreationStrategy

@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Presets;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Presets;
 
-use Mangoweb\Tester\Infrastructure\InfrastructureConfigurator;
+use Webnazakazku\MangoTester\Infrastructure\InfrastructureConfigurator;
 
 class NextrasStackPreset
 {
@@ -15,11 +15,5 @@ class NextrasStackPreset
 	public static function installPostgresql(InfrastructureConfigurator $configurator): void
 	{
 		$configurator->addConfig(__DIR__ . '/nextras-postgresql.neon');
-	}
-
-
-	public static function installTransactional(InfrastructureConfigurator $configurator): void
-	{
-		$configurator->addConfig(__DIR__ . '/nextras-transactional.neon');
 	}
 }

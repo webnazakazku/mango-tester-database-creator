@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator;
+namespace Webnazakazku\MangoTester\DatabaseCreator;
 
-use Mangoweb\Tester\DatabaseCreator\Strategies\IDatabaseCreationStrategy;
+use Webnazakazku\MangoTester\DatabaseCreator\Strategies\IDatabaseCreationStrategy;
 
 
 interface DatabaseStrategyAccessor

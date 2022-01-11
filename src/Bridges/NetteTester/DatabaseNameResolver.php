@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Bridges\NetteTester;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\NetteTester;
 
-use Mangoweb\Tester\DatabaseCreator\IDatabaseNameResolver;
+use Webnazakazku\MangoTester\DatabaseCreator\IDatabaseNameResolver;
 
 
 class DatabaseNameResolver implements IDatabaseNameResolver

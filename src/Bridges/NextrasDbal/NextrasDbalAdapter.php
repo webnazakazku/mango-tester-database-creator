@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Bridges\NextrasDbal;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\NextrasDbal;
 
 use DateTime;
-use Mangoweb\Tester\DatabaseCreator\IDbal;
 use Nextras\Dbal\Connection;
 use Nextras\Dbal\Result\Row;
+use Webnazakazku\MangoTester\DatabaseCreator\IDbal;
 
 
 class NextrasDbalAdapter implements IDbal

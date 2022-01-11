@@ -1,20 +1,20 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Bridges\NetteDI;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\NetteDI;
 
-use Mangoweb\Tester\DatabaseCreator\Bridges\NetteTester\DatabaseNameResolver;
-use Mangoweb\Tester\DatabaseCreator\DatabaseCreator;
-use Mangoweb\Tester\DatabaseCreator\DatabaseStrategyAccessor;
-use Mangoweb\Tester\DatabaseCreator\Drivers\MySqlDatabaseDriver;
-use Mangoweb\Tester\DatabaseCreator\Drivers\PostgreSqlDatabaseDriver;
-use Mangoweb\Tester\DatabaseCreator\IDatabaseNameResolver;
-use Mangoweb\Tester\DatabaseCreator\IDbal;
-use Mangoweb\Tester\DatabaseCreator\MigrationHashSuffixDatabaseNameResolver;
-use Mangoweb\Tester\DatabaseCreator\Mutex;
-use Mangoweb\Tester\DatabaseCreator\Strategies\ContinueOrResetDatabaseStrategy;
-use Mangoweb\Tester\DatabaseCreator\Strategies\ResetDatabaseStrategy;
-use Mangoweb\Tester\DatabaseCreator\Strategies\TemplateDatabaseStrategy;
 use Nette\DI\CompilerExtension;
+use Webnazakazku\MangoTester\DatabaseCreator\Bridges\NetteTester\DatabaseNameResolver;
+use Webnazakazku\MangoTester\DatabaseCreator\Drivers\MySqlDatabaseDriver;
+use Webnazakazku\MangoTester\DatabaseCreator\Drivers\PostgreSqlDatabaseDriver;
+use Webnazakazku\MangoTester\DatabaseCreator\Strategies\ContinueOrResetDatabaseStrategy;
+use Webnazakazku\MangoTester\DatabaseCreator\Strategies\ResetDatabaseStrategy;
+use Webnazakazku\MangoTester\DatabaseCreator\Strategies\TemplateDatabaseStrategy;
+use Webnazakazku\MangoTester\DatabaseCreator\DatabaseCreator;
+use Webnazakazku\MangoTester\DatabaseCreator\DatabaseStrategyAccessor;
+use Webnazakazku\MangoTester\DatabaseCreator\IDatabaseNameResolver;
+use Webnazakazku\MangoTester\DatabaseCreator\IDbal;
+use Webnazakazku\MangoTester\DatabaseCreator\MigrationHashSuffixDatabaseNameResolver;
+use Webnazakazku\MangoTester\DatabaseCreator\Mutex;
 
 
 class DatabaseCreatorExtension extends CompilerExtension

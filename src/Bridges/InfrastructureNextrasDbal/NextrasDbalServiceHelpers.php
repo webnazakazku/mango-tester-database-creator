@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Bridges\InfrastructureNextrasDbal;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\InfrastructureNextrasDbal;
 
-use Mangoweb\Tester\DatabaseCreator\DatabaseCreator;
 use Nette\DI\Definitions\ServiceDefinition;
 use Nette\DI\Definitions\Statement;
 use Nette\StaticClass;
+use Webnazakazku\MangoTester\DatabaseCreator\DatabaseCreator;
 
 class NextrasDbalServiceHelpers
 {

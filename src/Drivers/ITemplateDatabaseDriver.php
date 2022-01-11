@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Drivers;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Drivers;
 
 
 interface ITemplateDatabaseDriver extends IDatabaseDriver

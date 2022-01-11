@@ -1,13 +1,13 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Bridges\Infrastructure;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\Infrastructure;
 
-use Mangoweb\Tester\DatabaseCreator\Bridges\InfrastructureNextrasDbal\NextrasDbalHook;
-use Mangoweb\Tester\DatabaseCreator\Bridges\InfrastructureNextrasDbal\NextrasDbalServiceHelpers;
-use Mangoweb\Tester\Infrastructure\MangoTesterExtension;
 use Nette\DI\CompilerExtension;
 use Nette\DI\Definitions\ServiceDefinition;
 use Nextras\Dbal\IConnection;
+use Webnazakazku\MangoTester\DatabaseCreator\Bridges\InfrastructureNextrasDbal\NextrasDbalHook;
+use Webnazakazku\MangoTester\DatabaseCreator\Bridges\InfrastructureNextrasDbal\NextrasDbalServiceHelpers;
+use Webnazakazku\MangoTester\Infrastructure\MangoTesterExtension;
 
 
 class DatabaseCreatorInfrastructureExtension extends CompilerExtension

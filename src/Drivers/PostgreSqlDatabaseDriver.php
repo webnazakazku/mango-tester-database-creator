@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Drivers;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Drivers;
 
-use Mangoweb\Tester\DatabaseCreator\IDbal;
+use Webnazakazku\MangoTester\DatabaseCreator\IDbal;
 
 
 class PostgreSqlDatabaseDriver implements IDatabaseDriver, ITemplateDatabaseDriver

@@ -1,9 +1,7 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Bridges\NextrasMigrations;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\NextrasMigrations;
 
-use Mangoweb\Tester\DatabaseCreator\CannotContinueMigrationException;
-use Mangoweb\Tester\DatabaseCreator\IMigrationsDriver;
 use Nextras\Migrations\Engine\Finder;
 use Nextras\Migrations\Engine\OrderResolver;
 use Nextras\Migrations\Engine\Runner;
@@ -13,6 +11,8 @@ use Nextras\Migrations\IConfiguration;
 use Nextras\Migrations\IDriver;
 use Nextras\Migrations\LogicException;
 use Nextras\Migrations\Printers\DevNull;
+use Webnazakazku\MangoTester\DatabaseCreator\CannotContinueMigrationException;
+use Webnazakazku\MangoTester\DatabaseCreator\IMigrationsDriver;
 
 
 class NextrasMigrationsDriver implements IMigrationsDriver

@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Strategies;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Strategies;
 
-use Mangoweb\Tester\DatabaseCreator\Drivers\ITemplateDatabaseDriver;
-use Mangoweb\Tester\DatabaseCreator\IMigrationsDriver;
-use Mangoweb\Tester\DatabaseCreator\Mutex;
+use Webnazakazku\MangoTester\DatabaseCreator\Drivers\ITemplateDatabaseDriver;
+use Webnazakazku\MangoTester\DatabaseCreator\IMigrationsDriver;
+use Webnazakazku\MangoTester\DatabaseCreator\Mutex;
 
 
 class TemplateDatabaseStrategy implements IDatabaseCreationStrategy

@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace Mangoweb\Tester\DatabaseCreator\Bridges\InfrastructureNextrasDbal;
+namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\InfrastructureNextrasDbal;
 
-use Mangoweb\Tester\Infrastructure\Container\AppContainerHook;
 use Nette\DI\ContainerBuilder;
 use Nette\DI\Definitions\ServiceDefinition;
 use Nextras\Dbal\Connection;
+use Webnazakazku\MangoTester\Infrastructure\Container\AppContainerHook;
 
 
 class NextrasDbalHook extends AppContainerHook
