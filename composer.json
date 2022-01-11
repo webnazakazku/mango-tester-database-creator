@@ -1,5 +1,6 @@
 {
 	"name": "webnazakazku/mango-tester-database-creator",
+	"type": "library",
 	"license": "MIT",
 	"repositories": [
 		{
