@@ -9,8 +9,8 @@ use Webnazakazku\MangoTester\DatabaseCreator\DatabaseCreator;
 
 class NextrasDbalServiceHelpers
 {
-	use StaticClass;
 
+	use StaticClass;
 
 	public static function modifyConnectionDefinition(ServiceDefinition $definition): void
 	{
@@ -26,4 +26,5 @@ class NextrasDbalServiceHelpers
 		$definition->setArguments($args);
 		$definition->addSetup(['@' . DatabaseCreator::class, 'createTestDatabase']);
 	}
+
 }

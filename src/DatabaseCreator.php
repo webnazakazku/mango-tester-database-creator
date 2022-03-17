@@ -2,7 +2,6 @@
 
 namespace Webnazakazku\MangoTester\DatabaseCreator;
 
-
 class DatabaseCreator
 {
 
@@ -14,7 +13,6 @@ class DatabaseCreator
 
 	/** @var DatabaseStrategyAccessor */
 	private $databaseStrategyAccessor;
-
 
 	public function __construct(DatabaseStrategyAccessor $databaseStrategyAccessor, IDatabaseNameResolver $databaseNameResolver)
 	{
@@ -34,6 +32,7 @@ class DatabaseCreator
 		if ($this->created) {
 			return;
 		}
+
 		$this->databaseStrategyAccessor->get()->prepareDatabase($this->databaseNameResolver->getDatabaseName());
 		$this->created = true;
 	}

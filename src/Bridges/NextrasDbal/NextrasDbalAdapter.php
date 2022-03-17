@@ -7,12 +7,11 @@ use Nextras\Dbal\Connection;
 use Nextras\Dbal\Result\Row;
 use Webnazakazku\MangoTester\DatabaseCreator\IDbal;
 
-
 class NextrasDbalAdapter implements IDbal
 {
+
 	/** @var Connection */
 	private $connection;
-
 
 	public function __construct(Connection $connection)
 	{

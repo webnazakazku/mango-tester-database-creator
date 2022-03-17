@@ -6,6 +6,7 @@ use Webnazakazku\MangoTester\Infrastructure\InfrastructureConfigurator;
 
 class NextrasStackPreset
 {
+
 	public static function installMysql(InfrastructureConfigurator $configurator): void
 	{
 		$configurator->addConfig(__DIR__ . '/nextras-mysql.neon');
@@ -16,4 +17,5 @@ class NextrasStackPreset
 	{
 		$configurator->addConfig(__DIR__ . '/nextras-postgresql.neon');
 	}
+
 }

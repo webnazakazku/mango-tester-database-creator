@@ -2,6 +2,8 @@
 
 namespace Webnazakazku\MangoTester\DatabaseCreator;
 
+use DateTime;
+
 interface IDbal
 {
 
@@ -26,7 +28,7 @@ interface IDbal
 	public function escapeBool(bool $value): string;
 
 
-	public function escapeDateTime(\DateTime $value): string;
+	public function escapeDateTime(DateTime $value): string;
 
 
 	public function escapeIdentifier(string $value): string;

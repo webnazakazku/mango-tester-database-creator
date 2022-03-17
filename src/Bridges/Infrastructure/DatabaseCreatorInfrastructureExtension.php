@@ -9,14 +9,13 @@ use Webnazakazku\MangoTester\DatabaseCreator\Bridges\InfrastructureNextrasDbal\N
 use Webnazakazku\MangoTester\DatabaseCreator\Bridges\InfrastructureNextrasDbal\NextrasDbalServiceHelpers;
 use Webnazakazku\MangoTester\Infrastructure\MangoTesterExtension;
 
-
 class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 {
-    /** @var mixed[]  */
+
+	/** @var mixed[]  */
 	public $defaults = [
 		'nextrasDbal' => false,
 	];
-
 
 	public function __construct()
 	{
@@ -32,7 +31,6 @@ class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 		$builder->addDefinition($this->prefix('createDatabaseHook'))
 			->setClass(DatabaseCreatorHook::class)
 			->addTag(MangoTesterExtension::TAG_HOOK);
-
 
 		if ($config['nextrasDbal']) {
 			$this->setupNextrasDbal();
@@ -54,4 +52,5 @@ class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 			NextrasDbalServiceHelpers::modifyConnectionDefinition($def);
 		}
 	}
+
 }

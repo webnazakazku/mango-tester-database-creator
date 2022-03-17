@@ -2,17 +2,16 @@
 
 namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\Infrastructure;
 
-use Webnazakazku\MangoTester\DatabaseCreator\DatabaseCreator;
-use Webnazakazku\MangoTester\Infrastructure\Container\AppContainerHook;
 use Nette\DI\Container;
 use Nette\DI\ContainerBuilder;
-
+use Webnazakazku\MangoTester\DatabaseCreator\DatabaseCreator;
+use Webnazakazku\MangoTester\Infrastructure\Container\AppContainerHook;
 
 class DatabaseCreatorHook extends AppContainerHook
 {
+
 	/** @var DatabaseCreator */
 	private $databaseCreator;
-
 
 	public function __construct(DatabaseCreator $databaseCreator)
 	{
@@ -32,4 +31,5 @@ class DatabaseCreatorHook extends AppContainerHook
 	{
 		$applicationContainer->addService('databaseCreator', $this->databaseCreator);
 	}
+
 }

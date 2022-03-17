@@ -5,7 +5,6 @@ namespace Webnazakazku\MangoTester\DatabaseCreator\Strategies;
 use Webnazakazku\MangoTester\DatabaseCreator\Drivers\IDatabaseDriver;
 use Webnazakazku\MangoTester\DatabaseCreator\IMigrationsDriver;
 
-
 class ResetDatabaseStrategy implements IDatabaseCreationStrategy
 {
 
@@ -14,7 +13,6 @@ class ResetDatabaseStrategy implements IDatabaseCreationStrategy
 
 	/** @var IMigrationsDriver */
 	private $migrationsDriver;
-
 
 	public function __construct(IDatabaseDriver $databaseDriver, IMigrationsDriver $migrationsDriver)
 	{

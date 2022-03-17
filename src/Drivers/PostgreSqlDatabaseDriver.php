@@ -4,13 +4,11 @@ namespace Webnazakazku\MangoTester\DatabaseCreator\Drivers;
 
 use Webnazakazku\MangoTester\DatabaseCreator\IDbal;
 
-
 class PostgreSqlDatabaseDriver implements IDatabaseDriver, ITemplateDatabaseDriver
 {
 
 	/** @var IDbal */
 	private $dbal;
-
 
 	public function __construct(IDbal $dbal)
 	{

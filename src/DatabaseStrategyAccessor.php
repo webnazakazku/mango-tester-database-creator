@@ -4,7 +4,6 @@ namespace Webnazakazku\MangoTester\DatabaseCreator;
 
 use Webnazakazku\MangoTester\DatabaseCreator\Strategies\IDatabaseCreationStrategy;
 
-
 interface DatabaseStrategyAccessor
 {
 

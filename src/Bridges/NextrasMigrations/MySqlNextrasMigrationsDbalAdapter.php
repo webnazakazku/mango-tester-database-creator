@@ -2,14 +2,14 @@
 
 namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\NextrasMigrations;
 
+use DateTime;
 use Webnazakazku\MangoTester\DatabaseCreator\IDbal;
-
 
 class MySqlNextrasMigrationsDbalAdapter implements IDbal
 {
+
 	/** @var \Nextras\Migrations\IDbal */
 	private $migrationsDbal;
-
 
 	public function __construct(\Nextras\Migrations\IDbal $migrationsDbal)
 	{
@@ -47,7 +47,7 @@ class MySqlNextrasMigrationsDbalAdapter implements IDbal
 	}
 
 
-	public function escapeDateTime(\DateTime $value): string
+	public function escapeDateTime(DateTime $value): string
 	{
 		return $this->migrationsDbal->escapeDateTime($value);
 	}
@@ -66,4 +66,5 @@ class MySqlNextrasMigrationsDbalAdapter implements IDbal
 			$this->escapeIdentifier($name)
 		));
 	}
+
 }

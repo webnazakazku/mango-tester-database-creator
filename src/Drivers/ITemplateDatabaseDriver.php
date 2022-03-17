@@ -2,7 +2,6 @@
 
 namespace Webnazakazku\MangoTester\DatabaseCreator\Drivers;
 
-
 interface ITemplateDatabaseDriver extends IDatabaseDriver
 {
 

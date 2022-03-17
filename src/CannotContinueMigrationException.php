@@ -2,7 +2,9 @@
 
 namespace Webnazakazku\MangoTester\DatabaseCreator;
 
-class CannotContinueMigrationException extends \RuntimeException
+use RuntimeException;
+
+class CannotContinueMigrationException extends RuntimeException
 {
 
 }

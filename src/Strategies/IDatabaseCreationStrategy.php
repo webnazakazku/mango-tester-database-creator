@@ -2,7 +2,6 @@
 
 namespace Webnazakazku\MangoTester\DatabaseCreator\Strategies;
 
-
 interface IDatabaseCreationStrategy
 {
 

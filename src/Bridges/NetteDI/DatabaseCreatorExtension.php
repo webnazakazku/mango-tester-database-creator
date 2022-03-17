@@ -4,22 +4,22 @@ namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\NetteDI;
 
 use Nette\DI\CompilerExtension;
 use Webnazakazku\MangoTester\DatabaseCreator\Bridges\NetteTester\DatabaseNameResolver;
-use Webnazakazku\MangoTester\DatabaseCreator\Drivers\MySqlDatabaseDriver;
-use Webnazakazku\MangoTester\DatabaseCreator\Drivers\PostgreSqlDatabaseDriver;
-use Webnazakazku\MangoTester\DatabaseCreator\Strategies\ContinueOrResetDatabaseStrategy;
-use Webnazakazku\MangoTester\DatabaseCreator\Strategies\ResetDatabaseStrategy;
-use Webnazakazku\MangoTester\DatabaseCreator\Strategies\TemplateDatabaseStrategy;
 use Webnazakazku\MangoTester\DatabaseCreator\DatabaseCreator;
 use Webnazakazku\MangoTester\DatabaseCreator\DatabaseStrategyAccessor;
+use Webnazakazku\MangoTester\DatabaseCreator\Drivers\MySqlDatabaseDriver;
+use Webnazakazku\MangoTester\DatabaseCreator\Drivers\PostgreSqlDatabaseDriver;
 use Webnazakazku\MangoTester\DatabaseCreator\IDatabaseNameResolver;
 use Webnazakazku\MangoTester\DatabaseCreator\IDbal;
 use Webnazakazku\MangoTester\DatabaseCreator\MigrationHashSuffixDatabaseNameResolver;
 use Webnazakazku\MangoTester\DatabaseCreator\Mutex;
-
+use Webnazakazku\MangoTester\DatabaseCreator\Strategies\ContinueOrResetDatabaseStrategy;
+use Webnazakazku\MangoTester\DatabaseCreator\Strategies\ResetDatabaseStrategy;
+use Webnazakazku\MangoTester\DatabaseCreator\Strategies\TemplateDatabaseStrategy;
 
 class DatabaseCreatorExtension extends CompilerExtension
 {
-    /** @var array<mixed>  */
+
+	/** @var array<mixed>  */
 	public $defaults = [
 		'dbal' => null,
 		'migrations' => null,
@@ -31,7 +31,6 @@ class DatabaseCreatorExtension extends CompilerExtension
 			'migrationHashSuffix' => false,
 		],
 	];
-
 
 	public function loadConfiguration(): void
 	{
@@ -113,9 +112,9 @@ class DatabaseCreatorExtension extends CompilerExtension
 		}
 	}
 
-    /**
-     * @param array<string> $config
-     */
+	/**
+	 * @param array<string> $config
+	 */
 	private function registerNameResolver(array $config): void
 	{
 		$builder = $this->getContainerBuilder();
@@ -129,6 +128,7 @@ class DatabaseCreatorExtension extends CompilerExtension
 		} else {
 			$def->setFactory($config['type']);
 		}
+
 		if ($config['migrationHashSuffix'] ?? false) {
 			$def->setAutowired(false);
 			$builder->addDefinition($this->prefix('databaseNameResolverDecorator'))

@@ -14,7 +14,6 @@ use Nextras\Migrations\Printers\DevNull;
 use Webnazakazku\MangoTester\DatabaseCreator\CannotContinueMigrationException;
 use Webnazakazku\MangoTester\DatabaseCreator\IMigrationsDriver;
 
-
 class NextrasMigrationsDriver implements IMigrationsDriver
 {
 
@@ -24,15 +23,16 @@ class NextrasMigrationsDriver implements IMigrationsDriver
 	/** @var IConfiguration */
 	private $configuration;
 
-
 	public function __construct(IDriver $driver, IConfiguration $configuration)
 	{
 		$runner = new Runner($driver, new class extends DevNull
 		{
+
 			public function printError(Exception $e): void
 			{
 				throw $e;
 			}
+
 		});
 
 		foreach ($configuration->getGroups() as $group) {

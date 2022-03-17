@@ -6,15 +6,14 @@ use Webnazakazku\MangoTester\DatabaseCreator\CannotContinueMigrationException;
 use Webnazakazku\MangoTester\DatabaseCreator\Drivers\IDatabaseDriver;
 use Webnazakazku\MangoTester\DatabaseCreator\IMigrationsDriver;
 
-
 class ContinueOrResetDatabaseStrategy implements IDatabaseCreationStrategy
 {
+
 	/** @var IDatabaseDriver */
 	private $databaseDriver;
 
 	/** @var IMigrationsDriver */
 	private $migrationsDriver;
-
 
 	public function __construct(IDatabaseDriver $databaseDriver, IMigrationsDriver $migrationsDriver)
 	{
@@ -32,4 +31,5 @@ class ContinueOrResetDatabaseStrategy implements IDatabaseCreationStrategy
 			$this->migrationsDriver->reset();
 		}
 	}
+
 }

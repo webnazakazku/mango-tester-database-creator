@@ -4,9 +4,9 @@ namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\NetteTester;
 
 use Webnazakazku\MangoTester\DatabaseCreator\IDatabaseNameResolver;
 
-
 class DatabaseNameResolver implements IDatabaseNameResolver
 {
+
 	public const DEFAULT_FORMAT = 'app_test_%d';
 
 	/** @var string */
@@ -14,7 +14,6 @@ class DatabaseNameResolver implements IDatabaseNameResolver
 
 	/** @var string */
 	private $id;
-
 
 	public function __construct(string $format = self::DEFAULT_FORMAT)
 	{

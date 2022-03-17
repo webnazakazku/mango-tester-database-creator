@@ -2,6 +2,7 @@
 
 namespace Webnazakazku\MangoTester\DatabaseCreator;
 
+use LogicException;
 
 class Mutex
 {
@@ -11,7 +12,6 @@ class Mutex
 
 	/** @var array<mixed> (name => handle) */
 	private $locks;
-
 
 	public function __construct(string $dir)
 	{
@@ -38,13 +38,13 @@ class Mutex
 	{
 		$key = $this->getKey($key);
 		if (isset($this->locks[$key])) {
-			throw new \LogicException('Trying to acquire the same lock multiple times');
+			throw new LogicException('Trying to acquire the same lock multiple times');
 		}
 
 		$path = $this->dir . '/lock-' . $key;
 		$this->locks[$key] = fopen($path, 'w');
-        /** @var resource $stream */
-        $stream = $this->locks[$key];
+		/** @var resource $stream */
+		$stream = $this->locks[$key];
 		flock($stream, LOCK_EX);
 	}
 
@@ -53,7 +53,7 @@ class Mutex
 	{
 		$key = $this->getKey($key);
 		if (!isset($this->locks[$key])) {
-			throw new \LogicException('Trying to release a lock which has been already released');
+			throw new LogicException('Trying to release a lock which has been already released');
 		}
 
 		flock($this->locks[$key], LOCK_UN);
