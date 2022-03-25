@@ -18,7 +18,7 @@
 		"nextras/migrations": "^3.1",
 		"ninjify/qa": "^0.13",
 		"phpstan/phpstan": "^1.0",
-		"webnazakazku/mango-tester-infrastructure": "dev-master"
+		"webnazakazku/mango-tester-infrastructure": "^0.6"
 	},
 	"suggest": {
 		"nextras/dbal": "",
