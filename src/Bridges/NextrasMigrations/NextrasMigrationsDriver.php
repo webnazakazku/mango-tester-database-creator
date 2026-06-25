@@ -61,8 +61,8 @@ class NextrasMigrationsDriver implements IMigrationsDriver
 
 	public function getMigrationsHash(): string
 	{
-		/** @var Group[] $groups */
 		$groups = $this->configuration->getGroups();
+		/** @var list<Group> $groups */
 		$groups = array_filter($groups, fn (Group $group) => $group->name !== 'dummy-data');
 
 		$finder = new Finder();
