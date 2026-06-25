@@ -3,6 +3,8 @@
 namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\NetteDI;
 
 use Nette\DI\CompilerExtension;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
 use Webnazakazku\MangoTester\DatabaseCreator\Bridges\NetteTester\DatabaseNameResolver;
 use Webnazakazku\MangoTester\DatabaseCreator\DatabaseCreator;
 use Webnazakazku\MangoTester\DatabaseCreator\DatabaseStrategyAccessor;
@@ -16,79 +18,72 @@ use Webnazakazku\MangoTester\DatabaseCreator\Strategies\ContinueOrResetDatabaseS
 use Webnazakazku\MangoTester\DatabaseCreator\Strategies\ResetDatabaseStrategy;
 use Webnazakazku\MangoTester\DatabaseCreator\Strategies\TemplateDatabaseStrategy;
 
+/**
+ * @property-read \stdClass $config
+ */
 class DatabaseCreatorExtension extends CompilerExtension
 {
 
-	/** @var array<mixed> */
-	public array $defaults = [
-		'dbal' => null,
-		'migrations' => null,
-		'driver' => null,
-		'strategy' => null,
-		'databaseName' => [
-			'format' => DatabaseNameResolver::DEFAULT_FORMAT,
-			'type' => 'tester',
-			'migrationHashSuffix' => false,
-		],
-	];
+	public function getConfigSchema(): Schema
+	{
+		return Expect::structure([
+			'dbal' => Expect::string()->required(),
+			'migrations' => Expect::string()->required(),
+			'driver' => Expect::string()->required(),
+			'strategy' => Expect::string()->required(),
+			'databaseName' => Expect::structure([
+				'format' => Expect::string(DatabaseNameResolver::DEFAULT_FORMAT),
+				'type' => Expect::string('tester'),
+				'migrationHashSuffix' => Expect::bool(false),
+			]),
+		]);
+	}
 
 	public function loadConfiguration(): void
 	{
-		$config = $this->validateConfig($this->defaults);
-
-		assert($config['dbal'] !== null);
-		assert($config['migrations'] !== null);
-		assert($config['driver'] !== null);
-		assert($config['strategy'] !== null);
-
 		$builder = $this->getContainerBuilder();
 
-		if (isset($config['testDatabaseFormat'])) {
-			trigger_error('testDatabaseFormat is deprecated, use databaseName.format option instead', E_USER_DEPRECATED);
-			$config['databaseName']['format'] = $config['testDatabaseFormat'];
-		}
-
 		$builder->addDefinition($this->prefix('mutex'))
-			->setClass(Mutex::class)
+			->setType(Mutex::class)
 			->setArguments([$builder->parameters['tempDir']]);
 		$builder->addDefinition($this->prefix('databaseCreator'))
-			->setClass(DatabaseCreator::class);
+			->setType(DatabaseCreator::class);
 
-		$this->registerDbal($config['dbal']);
-		$this->registerMigrations($config['migrations']);
-		$this->registerDriver($config['driver']);
-		$this->registerStrategy($config['strategy']);
-		$this->registerNameResolver($config['databaseName']);
+		$this->registerDbal();
+		$this->registerMigrations();
+		$this->registerDriver();
+		$this->registerStrategy();
+		$this->registerNameResolver();
 	}
 
-	private function registerDbal(string $dbal): void
+	private function registerDbal(): void
 	{
 		$builder = $this->getContainerBuilder();
 		$def = $builder->addDefinition($this->prefix('dbal'));
-		$def->setClass(IDbal::class);
-		$def->setFactory($dbal);
+		$def->setType(IDbal::class);
+		$def->setFactory($this->config->dbal);
 	}
 
-	private function registerMigrations(string $migrations): void
+	private function registerMigrations(): void
 	{
 		$builder = $this->getContainerBuilder();
 		$def = $builder->addDefinition($this->prefix('migrationsDriver'));
-		$def->setFactory($migrations);
+		$def->setFactory($this->config->migrations);
 	}
 
-	private function registerDriver(string $driver): void
+	private function registerDriver(): void
 	{
 		$builder = $this->getContainerBuilder();
 		$def = $builder->addDefinition($this->prefix('databaseDriver'));
 
-		if ($driver === 'postgres') {
+		if ($this->config->driver === 'postgres') {
 			$def->setFactory(PostgreSqlDatabaseDriver::class);
-		} elseif ($driver === 'mysql') {
+		} elseif ($this->config->driver === 'mysql') {
 			$def->setFactory(MySqlDatabaseDriver::class);
 		}
 	}
 
-	private function registerStrategy(string $strategy): void
+	private function registerStrategy(): void
 	{
 		$builder = $this->getContainerBuilder();
 
@@ -97,38 +92,35 @@ class DatabaseCreatorExtension extends CompilerExtension
 			->setReference($this->prefix('@strategy'));
 
 		$def = $builder->addDefinition($this->prefix('strategy'));
-		if ($strategy === 'template') {
+		if ($this->config->strategy === 'template') {
 			$def->setFactory(TemplateDatabaseStrategy::class, [TemplateDatabaseStrategy::DEFAULT_FORMAT]);
-		} elseif ($strategy === 'reset') {
+		} elseif ($this->config->strategy === 'reset') {
 			$def->setFactory(ResetDatabaseStrategy::class);
-		} elseif ($strategy === 'continueOrReset') {
+		} elseif ($this->config->strategy === 'continueOrReset') {
 			$def->setFactory(ContinueOrResetDatabaseStrategy::class);
 		} else {
-			$def->setFactory($strategy);
+			$def->setFactory($this->config->strategy);
 		}
 	}
 
-	/**
-	 * @param array<string> $config
-	 */
-	private function registerNameResolver(array $config): void
+	private function registerNameResolver(): void
 	{
 		$builder = $this->getContainerBuilder();
 
 		$def = $builder->addDefinition($this->prefix('databaseNameResolver'));
-		$def->setClass(IDatabaseNameResolver::class);
+		$def->setType(IDatabaseNameResolver::class);
 
-		if ($config['type'] === 'tester') {
+		if ($this->config->databaseName->type === 'tester') {
 			$def->setFactory(DatabaseNameResolver::class)
-				->setArguments([$config['format']]);
+				->setArguments([$this->config->databaseName->format]);
 		} else {
-			$def->setFactory($config['type']);
+			$def->setFactory($this->config->databaseName->type);
 		}
 
-		if ($config['migrationHashSuffix'] ?? false) {
+		if ($this->config->databaseName->migrationHashSuffix ?? false) {
 			$def->setAutowired(false);
 			$builder->addDefinition($this->prefix('databaseNameResolverDecorator'))
-				->setClass(IDatabaseNameResolver::class)
+				->setType(IDatabaseNameResolver::class)
 				->setFactory(MigrationHashSuffixDatabaseNameResolver::class, [
 					'nameResolver' => $def,
 				]);

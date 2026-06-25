@@ -4,34 +4,34 @@ namespace Webnazakazku\MangoTester\DatabaseCreator\Bridges\Infrastructure;
 
 use Nette\DI\CompilerExtension;
 use Nette\DI\Definitions\ServiceDefinition;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
 use Nextras\Dbal\IConnection;
 use Webnazakazku\MangoTester\DatabaseCreator\Bridges\InfrastructureNextrasDbal\NextrasDbalHook;
 use Webnazakazku\MangoTester\DatabaseCreator\Bridges\InfrastructureNextrasDbal\NextrasDbalServiceHelpers;
 use Webnazakazku\MangoTester\Infrastructure\MangoTesterExtension;
 
+/**
+ * @property-read \stdClass $config
+ */
 class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 {
 
-	/** @var mixed[] */
-	public array $defaults = [
-		'nextrasDbal' => false,
-	];
-
-	public function __construct()
+	public function getConfigSchema(): Schema
 	{
-		$this->defaults['nextrasDbal'] = interface_exists(IConnection::class);
+		return Expect::structure([
+			'nextrasDbal' => Expect::bool(false)->default(interface_exists(IConnection::class)),
+		]);
 	}
 
 	public function loadConfiguration(): void
 	{
-		$config = $this->validateConfig($this->defaults);
-
 		$builder = $this->getContainerBuilder();
 		$builder->addDefinition($this->prefix('createDatabaseHook'))
-			->setClass(DatabaseCreatorHook::class)
+			->setType(DatabaseCreatorHook::class)
 			->addTag(MangoTesterExtension::TAG_HOOK);
 
-		if ($config['nextrasDbal']) {
+		if ($this->config->nextrasDbal) {
 			$this->setupNextrasDbal();
 		}
 	}
@@ -40,7 +40,7 @@ class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 	{
 		$builder = $this->getContainerBuilder();
 		$builder->addDefinition($this->prefix('nextrasDbalHook'))
-			->setClass(NextrasDbalHook::class)
+			->setType(NextrasDbalHook::class)
 			->addTag(MangoTesterExtension::TAG_HOOK);
 
 		$serviceName = $builder->getByType(IConnection::class);
