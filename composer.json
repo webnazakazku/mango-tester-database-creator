@@ -18,6 +18,8 @@
 		"nextras/migrations": "^3.1",
 		"contributte/qa": "^0.4",
 		"phpstan/phpstan": "^1.0",
+		"phpstan/phpstan-deprecation-rules": "^1.0",
+		"phpstan/phpstan-strict-rules": "^1.0",
 		"webnazakazku/mango-tester-infrastructure": "^0.7"
 	},
 	"suggest": {

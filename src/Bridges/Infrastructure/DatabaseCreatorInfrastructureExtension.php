@@ -44,8 +44,8 @@ class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 			->addTag(MangoTesterExtension::TAG_HOOK);
 
 		$serviceName = $builder->getByType(IConnection::class);
-		$def = $serviceName ? $builder->getDefinition($serviceName) : null;
-		if ($def && !isset($def->getTags()[MangoTesterExtension::TAG_REQUIRE])) {
+		$def = $serviceName !== null ? $builder->getDefinition($serviceName) : null;
+		if ($def !== null && !isset($def->getTags()[MangoTesterExtension::TAG_REQUIRE])) {
 			assert($def instanceof ServiceDefinition);
 			NextrasDbalServiceHelpers::modifyConnectionDefinition($def);
 		}

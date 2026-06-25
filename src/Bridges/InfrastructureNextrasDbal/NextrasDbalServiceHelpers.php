@@ -15,7 +15,6 @@ class NextrasDbalServiceHelpers
 	public static function modifyConnectionDefinition(ServiceDefinition $definition): void
 	{
 		$factory = $definition->getFactory();
-		assert($factory !== null);
 		$args = $factory->arguments;
 		$args['config'] = new Statement('array_merge(?, ?)', [
 			$args['config'],
