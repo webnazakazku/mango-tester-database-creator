@@ -17,7 +17,8 @@ class DatabaseNameResolver implements IDatabaseNameResolver
 	{
 		$this->format = $format;
 
-		$this->id = (string) getenv('NETTE_TESTER_THREAD') === '' ? (string) getenv('NETTE_TESTER_THREAD') : '0';
+		$env = getenv('NETTE_TESTER_THREAD');
+		$this->id = ($env !== false && $env !== '') ? $env : '0';
 	}
 
 	public function getDatabaseName(): string
