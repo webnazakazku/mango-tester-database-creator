@@ -7,21 +7,19 @@ use Webnazakazku\MangoTester\DatabaseCreator\IDbal;
 class MySqlDatabaseDriver implements IDatabaseDriver
 {
 
-	/** @var IDbal */
-	private $dbal;
+	private IDbal $dbal;
 
 	public function __construct(IDbal $dbal)
 	{
 		$this->dbal = $dbal;
 	}
 
-
 	public function getDatabaseName(): string
 	{
 		$result = $this->dbal->query('SELECT DATABASE()');
+
 		return reset($result[0]);
 	}
-
 
 	public function connectToDatabase(string $name): void
 	{

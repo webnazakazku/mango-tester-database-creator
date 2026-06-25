@@ -5,14 +5,11 @@ namespace Webnazakazku\MangoTester\DatabaseCreator;
 class DatabaseCreator
 {
 
-	/** @var bool */
-	private $created = false;
+	private bool $created = false;
 
-	/** @var IDatabaseNameResolver */
-	private $databaseNameResolver;
+	private IDatabaseNameResolver $databaseNameResolver;
 
-	/** @var DatabaseStrategyAccessor */
-	private $databaseStrategyAccessor;
+	private DatabaseStrategyAccessor $databaseStrategyAccessor;
 
 	public function __construct(DatabaseStrategyAccessor $databaseStrategyAccessor, IDatabaseNameResolver $databaseNameResolver)
 	{
@@ -20,12 +17,10 @@ class DatabaseCreator
 		$this->databaseStrategyAccessor = $databaseStrategyAccessor;
 	}
 
-
 	public function getDatabaseName(): string
 	{
 		return $this->databaseNameResolver->getDatabaseName();
 	}
-
 
 	public function createTestDatabase(): void
 	{

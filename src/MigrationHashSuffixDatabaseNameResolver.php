@@ -5,18 +5,15 @@ namespace Webnazakazku\MangoTester\DatabaseCreator;
 class MigrationHashSuffixDatabaseNameResolver implements IDatabaseNameResolver
 {
 
-	/** @var IDatabaseNameResolver */
-	private $nameResolver;
+	private IDatabaseNameResolver $nameResolver;
 
-	/** @var IMigrationsDriver */
-	private $migrationsDriver;
+	private IMigrationsDriver $migrationsDriver;
 
 	public function __construct(IDatabaseNameResolver $nameResolver, IMigrationsDriver $migrationsDriver)
 	{
 		$this->nameResolver = $nameResolver;
 		$this->migrationsDriver = $migrationsDriver;
 	}
-
 
 	public function getDatabaseName(): string
 	{

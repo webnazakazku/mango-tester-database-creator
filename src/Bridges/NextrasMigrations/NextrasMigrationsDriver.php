@@ -17,11 +17,9 @@ use Webnazakazku\MangoTester\DatabaseCreator\IMigrationsDriver;
 class NextrasMigrationsDriver implements IMigrationsDriver
 {
 
-	/** @var Runner */
-	private $migrationsRunner;
+	private Runner $migrationsRunner;
 
-	/** @var IConfiguration */
-	private $configuration;
+	private IConfiguration $configuration;
 
 	public function __construct(IDriver $driver, IConfiguration $configuration)
 	{
@@ -47,12 +45,10 @@ class NextrasMigrationsDriver implements IMigrationsDriver
 		$this->configuration = $configuration;
 	}
 
-
 	public function reset(): void
 	{
 		$this->migrationsRunner->run(Runner::MODE_RESET);
 	}
-
 
 	public function continue(): void
 	{
@@ -63,14 +59,11 @@ class NextrasMigrationsDriver implements IMigrationsDriver
 		}
 	}
 
-
 	public function getMigrationsHash(): string
 	{
 		/** @var Group[] $groups */
 		$groups = $this->configuration->getGroups();
-		$groups = array_filter($groups, function (Group $group) {
-			return $group->name !== 'dummy-data';
-		});
+		$groups = array_filter($groups, fn (Group $group) => $group->name !== 'dummy-data');
 
 		$finder = new Finder();
 		$files = $finder->find($groups, ['sql', 'php']);

@@ -8,18 +8,15 @@ use Webnazakazku\MangoTester\DatabaseCreator\IMigrationsDriver;
 class ResetDatabaseStrategy implements IDatabaseCreationStrategy
 {
 
-	/** @var IDatabaseDriver */
-	private $databaseDriver;
+	private IDatabaseDriver $databaseDriver;
 
-	/** @var IMigrationsDriver */
-	private $migrationsDriver;
+	private IMigrationsDriver $migrationsDriver;
 
 	public function __construct(IDatabaseDriver $databaseDriver, IMigrationsDriver $migrationsDriver)
 	{
 		$this->databaseDriver = $databaseDriver;
 		$this->migrationsDriver = $migrationsDriver;
 	}
-
 
 	public function prepareDatabase(string $name): void
 	{

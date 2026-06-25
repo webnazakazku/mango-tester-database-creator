@@ -12,8 +12,8 @@ use Webnazakazku\MangoTester\Infrastructure\MangoTesterExtension;
 class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 {
 
-	/** @var mixed[]  */
-	public $defaults = [
+	/** @var mixed[] */
+	public array $defaults = [
 		'nextrasDbal' => false,
 	];
 
@@ -21,7 +21,6 @@ class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 	{
 		$this->defaults['nextrasDbal'] = interface_exists(IConnection::class);
 	}
-
 
 	public function loadConfiguration(): void
 	{
@@ -36,7 +35,6 @@ class DatabaseCreatorInfrastructureExtension extends CompilerExtension
 			$this->setupNextrasDbal();
 		}
 	}
-
 
 	protected function setupNextrasDbal(): void
 	{

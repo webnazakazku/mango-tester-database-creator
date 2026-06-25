@@ -12,7 +12,6 @@ class NextrasStackPreset
 		$configurator->addConfig(__DIR__ . '/nextras-mysql.neon');
 	}
 
-
 	public static function installPostgresql(InfrastructureConfigurator $configurator): void
 	{
 		$configurator->addConfig(__DIR__ . '/nextras-postgresql.neon');

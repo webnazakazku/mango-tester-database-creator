@@ -7,22 +7,20 @@ use LogicException;
 class Mutex
 {
 
-	/** @var string */
-	private $dir;
+	private string $dir;
 
 	/** @var array<mixed> (name => handle) */
-	private $locks;
+	private array $locks;
 
 	public function __construct(string $dir)
 	{
 		$this->dir = $dir;
 	}
 
-
 	/**
 	 * @return mixed value returned by callback
 	 */
-	public function synchronized(string $key, callable $callback)
+	public function synchronized(string $key, callable $callback): mixed
 	{
 		$this->lock($key);
 
@@ -32,7 +30,6 @@ class Mutex
 			$this->unlock($key);
 		}
 	}
-
 
 	protected function lock(string $key): void
 	{
@@ -48,7 +45,6 @@ class Mutex
 		flock($stream, LOCK_EX);
 	}
 
-
 	protected function unlock(string $key): void
 	{
 		$key = $this->getKey($key);
@@ -60,7 +56,6 @@ class Mutex
 		fclose($this->locks[$key]);
 		unset($this->locks[$key]);
 	}
-
 
 	protected function getKey(string $key): string
 	{

@@ -9,11 +9,9 @@ class DatabaseNameResolver implements IDatabaseNameResolver
 
 	public const DEFAULT_FORMAT = 'app_test_%d';
 
-	/** @var string */
-	private $format;
+	private string $format;
 
-	/** @var string */
-	private $id;
+	private string $id;
 
 	public function __construct(string $format = self::DEFAULT_FORMAT)
 	{
@@ -21,7 +19,6 @@ class DatabaseNameResolver implements IDatabaseNameResolver
 
 		$this->id = getenv('NETTE_TESTER_THREAD') ?: '0';
 	}
-
 
 	public function getDatabaseName(): string
 	{

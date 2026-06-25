@@ -68,7 +68,7 @@ jobs:
         run: "${{ env.composer-install }}"
 
       - name: "Coding standards"
-        run: vendor/bin/codesniffer src
+        run: make cs
 
       - name: "PHPStan"
-        run: "vendor/bin/phpstan analyse --configuration phpstan.neon --level 8 src/"
+        run: make phpstan

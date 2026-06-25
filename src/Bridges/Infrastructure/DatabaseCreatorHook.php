@@ -10,14 +10,12 @@ use Webnazakazku\MangoTester\Infrastructure\Container\AppContainerHook;
 class DatabaseCreatorHook extends AppContainerHook
 {
 
-	/** @var DatabaseCreator */
-	private $databaseCreator;
+	private DatabaseCreator $databaseCreator;
 
 	public function __construct(DatabaseCreator $databaseCreator)
 	{
 		$this->databaseCreator = $databaseCreator;
 	}
-
 
 	public function onCompile(ContainerBuilder $builder): void
 	{
@@ -25,7 +23,6 @@ class DatabaseCreatorHook extends AppContainerHook
 			->setType(DatabaseCreator::class);
 		$builder->resolve();
 	}
-
 
 	public function onCreate(Container $applicationContainer): void
 	{

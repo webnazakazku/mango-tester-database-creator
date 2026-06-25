@@ -10,68 +10,63 @@ use Webnazakazku\MangoTester\DatabaseCreator\IDbal;
 class NextrasDbalAdapter implements IDbal
 {
 
-	/** @var Connection */
-	private $connection;
+	private Connection $connection;
 
 	public function __construct(Connection $connection)
 	{
 		$this->connection = $connection;
 	}
 
-
 	public function query(string $sql): array
 	{
 		$this->connection->connect();
+
 		return array_map(
-			function (Row $row) {
-				return $row->toArray();
-			},
+			fn (Row $row) => $row->toArray(),
 			iterator_to_array($this->connection->query('%raw', $sql))
 		);
 	}
-
 
 	public function exec(string $sql): int
 	{
 		$this->connection->connect();
 		$this->connection->query('%raw', $sql);
+
 		return $this->connection->getAffectedRows();
 	}
-
 
 	public function escapeString(string $value): string
 	{
 		$this->connection->connect();
+
 		return $this->connection->getDriver()->convertStringToSql($value);
 	}
-
 
 	public function escapeInt(int $value): string
 	{
 		return (string) $value;
 	}
 
-
 	public function escapeBool(bool $value): string
 	{
 		$this->connection->connect();
+
 		return $this->connection->getDriver()->convertBoolToSql($value);
 	}
-
 
 	public function escapeDateTime(DateTime $value): string
 	{
 		$this->connection->connect();
+
 		return $this->connection->getDriver()->convertDateTimeToSql($value);
 	}
-
 
 	public function escapeIdentifier(string $value): string
 	{
 		$this->connection->connect();
+
 		return $this->connection->getDriver()->convertIdentifierToSql($value);
 	}
-
 
 	public function connectToDatabase(string $name): void
 	{

@@ -16,7 +16,7 @@
 		"nextras/dbal": "^4.0",
 		"nextras/orm": "^4.0",
 		"nextras/migrations": "^3.1",
-		"ninjify/qa": "^0.13",
+		"contributte/qa": "^0.4",
 		"phpstan/phpstan": "^1.0",
 		"webnazakazku/mango-tester-infrastructure": "^0.6"
 	},

@@ -19,8 +19,8 @@ use Webnazakazku\MangoTester\DatabaseCreator\Strategies\TemplateDatabaseStrategy
 class DatabaseCreatorExtension extends CompilerExtension
 {
 
-	/** @var array<mixed>  */
-	public $defaults = [
+	/** @var array<mixed> */
+	public array $defaults = [
 		'dbal' => null,
 		'migrations' => null,
 		'driver' => null,
@@ -61,7 +61,6 @@ class DatabaseCreatorExtension extends CompilerExtension
 		$this->registerNameResolver($config['databaseName']);
 	}
 
-
 	private function registerDbal(string $dbal): void
 	{
 		$builder = $this->getContainerBuilder();
@@ -70,14 +69,12 @@ class DatabaseCreatorExtension extends CompilerExtension
 		$def->setFactory($dbal);
 	}
 
-
 	private function registerMigrations(string $migrations): void
 	{
 		$builder = $this->getContainerBuilder();
 		$def = $builder->addDefinition($this->prefix('migrationsDriver'));
 		$def->setFactory($migrations);
 	}
-
 
 	private function registerDriver(string $driver): void
 	{
@@ -90,7 +87,6 @@ class DatabaseCreatorExtension extends CompilerExtension
 			$def->setFactory(MySqlDatabaseDriver::class);
 		}
 	}
-
 
 	private function registerStrategy(string $strategy): void
 	{
